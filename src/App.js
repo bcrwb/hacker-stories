@@ -26,6 +26,14 @@ function App() {
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" />
       <hr />
+      <List/>
+    </div>
+  );
+}
+
+const List = () => {
+  return (
+    <div>
       {list.map((listItem) => (
         <div key={listItem.objectID}>
           <span>
@@ -38,6 +46,6 @@ function App() {
       ))}
     </div>
   );
-}
+};
 
 export default App;
