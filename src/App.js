@@ -1,25 +1,26 @@
 import React from "react";
 
-const list = [
-  {
-    title: "React",
-    url: "https://reactjs.org/",
-    author: "Jordan Walke",
-    num_comments: 3,
-    points: 4,
-    objectID: 0,
-  },
-  {
-    title: "Redux",
-    url: "https://redux.js.org/",
-    author: "Dan Abramov, Andrew Clark",
-    num_comments: 2,
-    points: 5,
-    objectID: 1,
-  },
-];
+
 
 function App() {
+  const stories = [
+    {
+      title: "React",
+      url: "https://reactjs.org/",
+      author: "Jordan Walke",
+      num_comments: 3,
+      points: 4,
+      objectID: 0,
+    },
+    {
+      title: "Redux",
+      url: "https://redux.js.org/",
+      author: "Dan Abramov, Andrew Clark",
+      num_comments: 2,
+      points: 5,
+      objectID: 1,
+    },
+  ];
   const handleInputChange = event => {
     console.log(event.target.value)
   }
@@ -29,15 +30,15 @@ function App() {
       <label htmlFor="search">Search: </label>
       <input id="search" type="text" onChange={handleInputChange} />
       <hr />
-      <List />
+      <List list={stories}/>
     </div>
   );
 }
 
-const List = () => {
+const List = (props) => {
   return (
     <div>
-      {list.map((listItem) => (
+      {props.list.map((listItem) => (
         <div key={listItem.objectID}>
           <span>
             <a href={listItem.url}> {listItem.title}</a>
