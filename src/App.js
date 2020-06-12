@@ -32,38 +32,38 @@ function App() {
   return (
     <div>
       <h1>My Hacker Stories</h1>
-      <Search onSearch={handleSearch} search={searchTerm}/>
+      <Search onSearch={handleSearch} search={searchTerm} />
       <hr />
       <List list={searchedStories} />
     </div>
   );
 }
 
-const Search = (props) => {
+const Search = ({ search, onSearch }) => {
   return (
     <div>
       <label htmlFor="search">Search: </label>
-      <input value={props.search} id="search" type="text" onChange={props.onSearch} />
+      <input value={search} id="search" type="text" onChange={onSearch} />
       <p>
-        Searching for <strong>{props.search}</strong>
+        Searching for <strong>{search}</strong>
       </p>
     </div>
   );
 };
 
-const List = (props) => {
+const List = ({ list }) => {
+  return list.map(({objectID, ...listItem}) => <Item key={objectID} {...listItem} />);
+};
+
+const Item = ({ title, url, author, num_comments, points }) => {
   return (
     <div>
-      {props.list.map((listItem) => (
-        <div key={listItem.objectID}>
-          <span>
-            <a href={listItem.url}> {listItem.title}</a>
-          </span>
-          <span>{listItem.author}</span>
-          <span>{listItem.num_comments}</span>
-          <span>{listItem.points}</span>
-        </div>
-      ))}
+      <span>
+        <a href={url}>{title}</a>
+      </span>
+      <span>{author}</span>
+      <span>{num_comments}</span>
+      <span>{points}</span>
     </div>
   );
 };
