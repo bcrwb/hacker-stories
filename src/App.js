@@ -45,20 +45,27 @@ function App() {
   return (
     <div>
       <h1>My Hacker Stories</h1>
-      <Search onSearch={handleSearch} search={searchTerm} />
+      <InputWithLabel
+        id="search"
+        label="Search"
+        onInputChange={handleSearch}
+        value={searchTerm}
+        type="text"
+      />
       <hr />
       <List list={searchedStories} />
     </div>
   );
 }
 
-const Search = ({ search, onSearch }) => {
+const InputWithLabel = ({ value, onInputChange, id, label, type }) => {
   return (
     <>
-      <label htmlFor="search">Search: </label>
-      <input value={search} id="search" type="text" onChange={onSearch} />
+      <label htmlFor={id}>{label} </label>
+      <input type={type} value={value} id={id} onChange={onInputChange} />
+
       <p>
-        Searching for <strong>{search}</strong>
+        Searching for <strong>{value}</strong>
       </p>
     </>
   );
